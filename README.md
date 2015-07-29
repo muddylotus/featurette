@@ -71,10 +71,26 @@ When you attach a feature to an element it's given an id if it doesn't
 already have one. You can use `Featurette.get("id")` to access the feature attached to
 an element with the passed id.
 
+Contributing
+----
+
+Featurette uses Babel to transpile ES6 to something that all browsers can
+use. That means you'll need Babel installed to work with Featurette:
+
+```sh
+npm install -g babel
+```
+
+Once you have Babel installed youc an build the script with this command:
+
+```sh
+babel src/featurette.js --out-file lib/featurette.js
+```
+
 License
 ----
 
-Copyright (c) 2013 Alan Johnson
+Copyright (c) 2013-2015 Alan Johnson
 
 Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the "Software"), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions:
 
