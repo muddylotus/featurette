@@ -1,3 +1,3 @@
 #!/bin/sh
 
-babel src/featurette.js -o lib/featurette.js
+babel src/featurette.es6 -o lib/featurette.js
