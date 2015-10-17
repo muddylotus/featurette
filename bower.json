@@ -10,7 +10,6 @@
   "license": "MIT",
   "ignore": [
     "spec.html",
-    "Cakefile",
     "lib/jasmine-2.0.0",
     "spec",
     "src",
