@@ -1,47 +1,55 @@
-class Featurette {
-  @version = "1.2.0"
+export default class Featurette {
 
-  @registered_features = {}
-  @featurettes_counter = 0
+  // Registers a new featurette.
+  static register(name, klass) {
+    Featurette.registeredFeatures[name] = klass;
+  }
 
-  # Registers a new featurette.
-  @register: (name, klass) ->
-    @registered_features[name] = klass
+  // Finds featurette elements in the current document and initializes them.
+  static load() {
+    var elementsNeedingLoad = document.querySelectorAll("[data-featurette]");
+    var elements = [];
 
-  @load: ->
-    elementsNeedingLoad = document.querySelectorAll("[data-featurette]")
-    elements = []
+    // filter the element list to elements that aren't already being loaded
+    for (var element of elementsNeedingLoad) {
+      if (!element.featuretteLoading && !element.featurette) {
+        elements.push(element);
+        element.featuretteLoading = true;
+      }
+    }
 
-    # filter the element list to elements that aren't already being loaded
-    for element in elementsNeedingLoad
-      unless element.featuretteLoading or element.featurette
-          elements.push(element)
-          element.featuretteLoading = true
+    // initialize the featurettes
+    for(var element of elements) {
+      var featurette = element.getAttribute("data-featurette");
+      var klass = Featurette.registeredFeatures[featurette];
 
-    for element in elements
-      featurette = element.getAttribute("data-featurette")
+      if (klass) {
+        var id = element.id;
 
-      klass = @registered_features[featurette]
+        // generate an id for the element if one doesn't already exist
+        if (!id || id == "") {
+          Featurette.nameCounter += 1;
+          id = "featurette-#{@featurettes_counter}";
+          element.id = id;
+        }
 
-      if klass
-        id = element.id
+        var obj = new klass(element);
+        element.featurette = obj;
+      } else if (window.console) {
+        console.log(`Unknown featurette ${featurette}`);
+      }
+    }
+  }
 
-        # Set up the automatic id for the element
-        if not id? or id is ""
-          id = "featurette-#{@featurettes_counter}"
-          element.id = id
-
-        obj = new klass(element)
-
-        element.featurette = obj
-        @featurettes_counter += 1
-      else
-        if window.console
-            console.log "Unknown featurette #{featurette}"
-
-  # Returns the featurette object attached to this element
-  @get: (id) ->
-    document.getElementById(id)?.featurette
+  // Finds the featurette with the given id
+  static get(id) {
+    var element = document.getElementById(id);
+    if (element) {
+      return element.featurette;
+    }
+  }
 }
 
-window.Featurette = Featurette;
+Featurette.registeredFeatures = {};
+Featurette.version = "1.3.0";
+Featurette.nameCounter = 0;
