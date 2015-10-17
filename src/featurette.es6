@@ -1,4 +1,4 @@
-export default class Featurette {
+class Featurette {
 
   // Registers a new featurette.
   static register(name, klass) {
@@ -11,7 +11,8 @@ export default class Featurette {
     var elements = [];
 
     // filter the element list to elements that aren't already being loaded
-    for (var element of elementsNeedingLoad) {
+    for (var i = 0; i < elementsNeedingLoad.length; i++) {
+      var element = elementsNeedingLoad[i];
       if (!element.featuretteLoading && !element.featurette) {
         elements.push(element);
         element.featuretteLoading = true;
@@ -19,7 +20,8 @@ export default class Featurette {
     }
 
     // initialize the featurettes
-    for(var element of elements) {
+    for(var i = 0; i < elements.length; i++) {
+      var element = elements[i];
       var featurette = element.getAttribute("data-featurette");
       var klass = Featurette.registeredFeatures[featurette];
 

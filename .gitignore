@@ -1,4 +1,3 @@
-test/test-featurettes.js
-test/test.js
-
 .DS_Store
+
+build/
