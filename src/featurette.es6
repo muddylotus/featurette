@@ -53,5 +53,5 @@ class Featurette {
 }
 
 Featurette.registeredFeatures = {};
-Featurette.version = "1.3.0";
+Featurette.version = "3.0.0beta";
 Featurette.nameCounter = 0;
