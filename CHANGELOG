@@ -1,6 +1,10 @@
 Changelog
 ---
 
+3.0.0 (pending)
+
+* Moved Featurette's language to ES6 from CoffeeScript.
+
 2.1.0 2014-03-31
 
 * Featurette.get is now implemented in a way that allows garbage collection
