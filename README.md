@@ -30,17 +30,15 @@ class Exclamation {
   }
 }
 
-Featurette.register("exclamation", Exclamation);
+Featurette.register(Exclamation);
 ```
 
 We define a class called `Exclamation` with a constructor that takes one
 argument, the element that we're attaching the feature to. Once that
 class is defined we call `Featurette.register` to register the feature
-that we defined. The first argument of `Featurette.register` is the
-name we'll use to apply that feature, and the second argument is the
-class that we'll instantiate to attach the feature.
+that we defined.
 
-Now, let's imagine we want to add the `exclamation` feature to an `h1`
+Now, let's imagine we want to add the `Exclamation` feature to an `h1`
 tag in our page. First, we'll ensure that we've called `Featurette.load` once
 the DOM loads. Featurette doesn't handle this automatically since there are
 quite a few different libraries that handle DOM loaded events, and Featurette
@@ -53,10 +51,10 @@ Featurette with jQuery:
 $(function() { Featurette.load(); });
 ```
 
-Now let's attach that `exclamation` feature to the `h1` tag:
+Now let's attach that `Exclamation` feature to the `h1` tag:
 
 ```html
-<h1 data-featurette="exclamation">Hola</h1>
+<h1 data-featurette="Exclamation">Hola</h1>
 ```
 
 The `data-featurette` attribute on the `h1` tells Featurette what
