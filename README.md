@@ -2,9 +2,9 @@ Featurette
 =====
 
 Featurette is a super simple javascript library for adding javascript features to
-elements in a web page. It's based on patterns that we've used at
-[Treehouse](http://teamtreehouse.com) to make our javascript less
-obtrusive and to have fewer in page scripts.
+elements in a web page. It's based on patterns that we used at
+[Treehouse](http://teamtreehouse.com) and [The Iron Yard](http://theironyard.com)
+to make our javascript less obtrusive.
 
 Getting Started
 ----
@@ -12,8 +12,8 @@ Getting Started
 To add a feature to an element involves writing and registering a class that defines
 your feature and then declaring that you want to use that feature on a
 particular element. Let's look at a quick example feature. While this
-example is written in CoffeeScript, you can use JavaScript with
-Featurette as well.
+example is written in ES6, you can use practically any flavor of JavaScript
+with Featurette.
 
 A feature can be any JavaScript object. Let's define a feature that adds
 cool Spanish exclamation marks to whatever element it's applied to.
@@ -22,13 +22,15 @@ We're using jQuery with this feature, just to make life a little easier.
 Here's the feature:
 
 ```coffeescript
-class Exclamation
-  constructor: (element) ->
-    $element = $(element)
-    newText = "¡#{$element.text()}!"
-    $element.text(newText)
+class Exclamation {
+  constructor(element) {
+    var element = $(element);
+    var newText = "¡${element.text()}!";
+    element.text(newText);
+  }
+}
 
-Featurette.register("exclamation", Exclamation)
+Featurette.register("exclamation", Exclamation);
 ```
 
 We define a class called `Exclamation` with a constructor that takes one
@@ -39,17 +41,16 @@ name we'll use to apply that feature, and the second argument is the
 class that we'll instantiate to attach the feature.
 
 Now, let's imagine we want to add the `exclamation` feature to an `h1`
-tag in our page. Let's look at what's required to do that. You'll want
-to make sure to call `Featurette.load` once the DOM loads. We don't
-include that automatically in Featurette because there are quite a few
-different libraries that handle DOM loaded events, and Featurette
+tag in our page. First, we'll ensure that we've called `Featurette.load` once
+the DOM loads. Featurette doesn't handle this automatically since there are
+quite a few different libraries that handle DOM loaded events, and Featurette
 doesn't prefer one of them over the other.
 
 Most people do use jQuery, though, so here's how to handle loading
 Featurette with jQuery:
 
 ```javascript
-  $(function() { Featurette.load(); });
+$(function() { Featurette.load(); });
 ```
 
 Now let's attach that `exclamation` feature to the `h1` tag:
@@ -59,21 +60,19 @@ Now let's attach that `exclamation` feature to the `h1` tag:
 ```
 
 The `data-featurette` attribute on the `h1` tells Featurette what
-feature to instantiate. So, when the document loads Featurette will
-search for all elements with Featurette on them and instantiate the class
-that corresponds to the feature name given on that element with
-`data-featurette`.
+feature to instantiate. When the document loads, Featurette will
+search for all elements with a `data-featurette` attribute and
+instantiate the class that corresponds to the feature name given on that
+element with `data-featurette`.
 
 Accessing Featurette Objects
 -----
-
-When you attach a feature to an element it's given an id if it doesn't
-already have one. You can use `Featurette.get("id")` to access the feature attached to
-an element with the passed id.
+Featurette generates an id attribute for any element that doesn't already have
+one, and expects ids to be unique. You can call `Featurette.get("[id]")` to
+access the feature attached to an element with the passed id.
 
 Contributing
 ----
-
 Featurette uses Babel to transpile ES6 to something that all browsers can
 use. That means you'll need Babel installed to work with Featurette:
 
@@ -81,11 +80,13 @@ use. That means you'll need Babel installed to work with Featurette:
 npm install -g babel
 ```
 
-Once you have Babel installed youc an build the script with this command:
+Once you have Babel installed you can build the project with the `build.sh` script:
 
 ```sh
-babel src/featurette.js --out-file lib/featurette.js
+./build.sh
 ```
+
+The tests are runnable by opening `build/spec/spec.html`.
 
 License
 ----
