@@ -1,14 +1,9 @@
 class Featurette {
 
-  // We use this function to identify objects that extend Featurette.
-  static isFeaturette() {
-    return true;
-  }
-
   // Registers a new featurette.
   static register(klass) {
     var name = klass.name;
-    if (klass.isFeaturette && klass.isFeaturette()) {
+    if (klass.prototype instanceof Featurette) {
       Featurette.registeredFeatures[name] = klass;
     } else if (window.console) {
       console.error(`Cannot register ${name} since it's not a Featurette.`);
@@ -59,6 +54,18 @@ class Featurette {
     if (element) {
       return element.featurette;
     }
+  }
+
+  constructor(element) {
+    this.element = element;
+  }
+
+  // Returns the value of the data attribute identified by attributeKey.
+  //
+  // Example:
+  // data("some-data");   // Returns value of data-some-data attribute.
+  data(attributeKey) {
+    return this.element.getAttribute(`data-${attributeKey}`);
   }
 }
 

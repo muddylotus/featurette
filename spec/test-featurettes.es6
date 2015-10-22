@@ -3,6 +3,10 @@ class Exclamation extends Featurette {
     super(element);
     element.innerHTML = element.innerHTML + "!";
   }
+
+  name() {
+    return data("name");
+  }
 }
 Featurette.register(Exclamation);
 

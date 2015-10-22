@@ -4,6 +4,10 @@ Changelog
 3.0.0 (pending)
 
 * Moved Featurette's language to ES6 from CoffeeScript.
+* Featurette.register now only takes the class. `data-featurette` now expects
+  the name of the Featurette class.
+* Featurettes are now expected to extend the Featurette class.
+* Featurettes now support the `data` function for accessing data attributes.
 
 2.1.0 2014-03-31
 

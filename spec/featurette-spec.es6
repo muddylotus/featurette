@@ -41,4 +41,10 @@ describe("Featurette", () => {
       });
     });
   });
+
+  describe("data", () => {
+    it("loads data", () => {
+      expect(Featurette.get("so-awesome").data("name")).toEqual("Alan");
+    });
+  });
 });
