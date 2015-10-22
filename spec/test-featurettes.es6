@@ -1,14 +1,16 @@
-class Exclamation {
+class Exclamation extends Featurette {
   constructor(element) {
+    super(element);
     element.innerHTML = element.innerHTML + "!";
   }
 }
-Featurette.register("exclamation", Exclamation)
+Featurette.register(Exclamation);
 
-class ExclamationGenerator {
+class ExclamationGenerator extends Featurette {
   constructor(element) {
-    element.innerHTML = "<div data-featurette=\"exclamation\">Cool Beans</div>";
+    super(element);
+    element.innerHTML = "<div data-featurette=\"Exclamation\">Cool Beans</div>";
     Featurette.load();
   }
 }
-Featurette.register("exclamation-generator", ExclamationGenerator)
+Featurette.register(ExclamationGenerator);

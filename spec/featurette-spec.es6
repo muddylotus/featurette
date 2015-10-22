@@ -1,6 +1,6 @@
 describe("Featurette", () => {
   it("registers featurettes", () => {
-    expect(Featurette.registeredFeatures["exclamation"]).toBeDefined();
+    expect(Featurette.registeredFeatures["Exclamation"]).toBeDefined();
   });
 
   it("executes features when load is run", () => {
@@ -22,7 +22,7 @@ describe("Featurette", () => {
   describe("calling load subsequent times", () => {
     it("ignores featurettes that have already loaded", () => {
       var list = document.getElementById("exclamatory-list");
-      list.innerHTML = "<li id=\"so-cool\" data-featurette=\"exclamation\">So cool</li>";
+      list.innerHTML = "<li id=\"so-cool\" data-featurette=\"Exclamation\">So cool</li>";
 
       Featurette.load();
 

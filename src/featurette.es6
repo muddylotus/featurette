@@ -1,8 +1,18 @@
 class Featurette {
 
+  // We use this function to identify objects that extend Featurette.
+  static isFeaturette() {
+    return true;
+  }
+
   // Registers a new featurette.
-  static register(name, klass) {
-    Featurette.registeredFeatures[name] = klass;
+  static register(klass) {
+    var name = klass.name;
+    if (klass.isFeaturette && klass.isFeaturette()) {
+      Featurette.registeredFeatures[name] = klass;
+    } else if (window.console) {
+      console.error(`Cannot register ${name} since it's not a Featurette.`);
+    }
   }
 
   // Finds featurette elements in the current document and initializes them.
@@ -38,7 +48,7 @@ class Featurette {
         var obj = new klass(element);
         element.featurette = obj;
       } else if (window.console) {
-        console.log(`Unknown featurette ${featurette}`);
+        console.error(`Unknown featurette ${featurette}`);
       }
     }
   }
