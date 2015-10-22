@@ -21,7 +21,7 @@ We're using jQuery with this feature, just to make life a little easier.
 
 Here's the feature:
 
-```coffeescript
+```javascript
 class Exclamation {
   constructor(element) {
     var element = $(element);
