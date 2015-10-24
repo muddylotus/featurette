@@ -1,13 +1,8 @@
 class Featurette {
 
   // Registers a new featurette.
-  static register(klass) {
-    var name = klass.name;
-    if (klass.prototype instanceof Featurette) {
-      Featurette.registeredFeatures[name] = klass;
-    } else if (window.console) {
-      console.error(`Cannot register ${name} since it's not a Featurette.`);
-    }
+  static register(name, klass) {
+    Featurette.registeredFeatures[name] = klass;
   }
 
   // Finds featurette elements in the current document and initializes them.

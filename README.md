@@ -22,21 +22,18 @@ We're using jQuery with this feature, just to make life a little easier.
 Here's the feature:
 
 ```javascript
-class Exclamation {
+Featurette.register("Exclamation", class extends Featurette {
   constructor(element) {
     var element = $(element);
     var newText = "¡${element.text()}!";
     element.text(newText);
   }
-}
-
-Featurette.register(Exclamation);
+});
 ```
 
-We define a class called `Exclamation` with a constructor that takes one
-argument, the element that we're attaching the feature to. Once that
-class is defined we call `Featurette.register` to register the feature
-that we defined.
+We define a class with a constructor that takes one argument, the element
+that we're attaching the feature to. Once that class is defined we call
+`Featurette.register` to register the feature that we defined.
 
 Now, let's imagine we want to add the `Exclamation` feature to an `h1`
 tag in our page. First, we'll ensure that we've called `Featurette.load` once
@@ -68,6 +65,18 @@ Accessing Featurette Objects
 Featurette generates an id attribute for any element that doesn't already have
 one, and expects ids to be unique. You can call `Featurette.get("[id]")` to
 access the feature attached to an element with the passed id.
+
+The `data` Method
+-----
+While Featurette only requires an object with a constructor, we provide a
+Featurette class with the intent to include commonly used functionality. One
+frequent technique within Featurette is to load data attributes, so we include
+the `data` method. To load the value of the `data-target` attribute, for
+example, you'd call:
+
+```javascript
+data("target");
+```
 
 Contributing
 ----
