@@ -1,0 +1,16 @@
+{
+  "name": "featurette",
+  "version": "2.1.0",
+  "description": "The easiest way to enhance DOM elements.",
+  "main": "./lib/featurette.js",
+  "directories": {
+    "lib": "lib"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/treehouse/featurette.git"
+  },
+  "author": "Alan Johnson <alan@commondream.net>",
+  "license": "MIT",
+  "homepage": "https://github.com/treehouse/featurette#readme"
+}
