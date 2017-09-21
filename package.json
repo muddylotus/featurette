@@ -1,6 +1,6 @@
 {
   "name": "featurette",
-  "version": "2.1.0",
+  "version": "2.1.1",
   "description": "The easiest way to enhance DOM elements.",
   "main": "./lib/featurette.js",
   "directories": {
